@@ -9,6 +9,8 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
+import com.marianhello.bgloc.react.BackgroundGeolocationPackage;  // <--- Import Package
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -19,14 +21,22 @@ public class MainApplication extends Application implements ReactApplication {
           return BuildConfig.DEBUG;
         }
 
+        // @Override
+        // protected List<ReactPackage> getPackages() {
+        //   @SuppressWarnings("UnnecessaryLocalVariable")
+        //   List<ReactPackage> packages = new PackageList(this).getPackages();
+        //   // Packages that cannot be autolinked yet can be added manually here, for example:
+        //   // packages.add(new MyReactNativePackage());
+        //   return packages;
+        // }
+
         @Override
-        protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
-          List<ReactPackage> packages = new PackageList(this).getPackages();
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
-          return packages;
-        }
+  protected List<ReactPackage> getPackages() {
+      return Arrays.<ReactPackage>asList(
+          new MainReactPackage(),
+          new BackgroundGeolocationPackage() // <---- Add the Package
+      );
+  }
 
         @Override
         protected String getJSMainModuleName() {
